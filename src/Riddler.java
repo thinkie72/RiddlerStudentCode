@@ -4,24 +4,37 @@
  * for Adventures in Algorithms
  * At Menlo School in Atherton, CA
  *
- * Completed by: YOUR NAME HERE
+ * Completed by: Tyler Hinkie
  */
 public class Riddler {
 
     public String decryptOne(String encrypted) {
-        String decrypted = "";
+        StringBuilder decrypted = new StringBuilder();
+        char[] letters = encrypted.toCharArray();
+        char first;
+        for (char c : letters) {
+            if (Character.isLetter(c)) {
+                if (Character.isLowerCase(c)) {
+                    first = 'a';
+                }
+                else first = 'A';
 
-        // TODO: Complete the decryptOne() function.
-
-        return decrypted;
+                decrypted.append((char) (((c - first + 9) % 26) + first));
+            }
+            else decrypted.append(c);
+        }
+        System.out.println(decrypted);
+        return decrypted.toString();
     }
 
     public String decryptTwo(String encrypted) {
-        String decrypted = "";
-
-        // TODO: Complete the decryptTwo() function.
-
-        return decrypted;
+        StringBuilder decrypted = new StringBuilder();
+        String[] numbers = encrypted.split(" ");
+        for (int i = 0; i < numbers.length; i++) {
+            decrypted.append(((char) Integer.parseInt(numbers[i])));
+        }
+        System.out.println(decrypted);
+        return decrypted.toString();
     }
 
     public String decryptThree(String encrypted) {
