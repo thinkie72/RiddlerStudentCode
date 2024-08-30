@@ -10,6 +10,7 @@ public class Riddler {
 
     public String decryptOne(String encrypted) {
         StringBuilder decrypted = new StringBuilder();
+        // Letters array so to prevent calling toCharArray() repeatedly
         char[] letters = encrypted.toCharArray();
         char first;
         for (char c : letters) {
@@ -19,8 +20,10 @@ public class Riddler {
                 }
                 else first = 'A';
 
+                // Adds decrypted character to the string using the formula
                 decrypted.append((char) (((c - first + 9) % 26) + first));
             }
+            // Adds spaces or other special characters
             else decrypted.append(c);
         }
         System.out.println(decrypted);
@@ -38,11 +41,13 @@ public class Riddler {
     }
 
     public String decryptThree(String encrypted) {
-        String decrypted = "";
-
-        // TODO: Complete the decryptThree() function.
-
-        return decrypted;
+        StringBuilder decrypted = new StringBuilder();
+        int numBits = 8;
+        for (int i = 0; i < encrypted.length() - numBits; i += numBits) {
+            decrypted.append((char) (Integer.parseInt(encrypted.substring(i, i + numBits), 2)));
+        }
+        System.out.println(decrypted);
+        return decrypted.toString();
     }
 
     public String decryptFour(String encrypted) {
